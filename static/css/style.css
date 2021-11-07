@@ -86,5 +86,54 @@ main{
 }
 
 .title{
-    
+    display: flex;
+    justify-content: center;
+}
+
+.LOGbody{
+    padding: 0;
+    margin: 0;
+    background-color: var(--bg-secondary);
+    color: white;
+}
+.LOGcard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rem;
+}
+
+.LOGbutton{
+    font-family: 'Open Sans';
+    border-color:var(--nice-purple);
+    border-radius: 1rem;
+    background-color: var(--bg-primary);
+    color: white;
+    width: 6rem;
+}
+
+.LOGwave {
+    z-index: -1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.LOGwave svg {
+    position: relative;
+    display: block;
+    width: calc(197% + 1.3px);
+    height: 485px;
+}
+
+.LOGwave .shape-fill {
+    fill: #9966CC;
+}
+
+.LOGlink{
+    text-decoration: none;
+    color: var(--bg-primary);
 }
