@@ -1,0 +1,201 @@
+:root{
+    font-size: 16px;
+    font-family: 'Open Sans';
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+    --nice-purple: #9966CC;
+    --transition-speed: 100ms;
+}
+body::-webkit-scrollbar{
+    width: 0.4rem;
+}
+body::-webkit-scrollbar-track{
+    background: var(--bg-primary);
+}
+body::-webkit-scrollbar-thumb{
+    background: var(--nice-purple);
+}
+body{
+    color:black;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+main{
+    margin-left: 5rem;
+    padding: 1rem;
+}
+.navbar{
+    width: 5rem;
+    height: 100vh;
+    position: fixed;
+    background-color: var(--bg-primary);
+    transition: width 200ms ease;
+}
+.navbar:hover{
+    width: 15rem;
+
+}
+.navbar:hover .nav-text{
+    display: block;
+}
+
+.navbar-nav{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+.navbar-item{
+    width: 100%;
+}
+.navbar-item:last-child{
+    margin-top: auto;
+
+}
+
+.nav-link{
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    filter: grayscale(100%) opacity(0.7);
+    transition: var(--transition-speed);
+}
+.nav-link:hover{
+    filter: grayscale(0%) opacity(1);
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+.nav-link svg{
+    color: var(--nice-purple);
+    min-width: 2rem;
+    margin: 0 1.5rem;
+}
+.nav-text{
+    color: var(--nice-purple);
+    display: none;
+    margin-left: 1rem;
+    
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+}
+
+.card-list{
+    color: white;   
+    display: flex;
+    flex-direction: row;
+    padding: 10rem;
+}
+
+.card {
+    height: 350px;
+    width: 300px;
+    min-width: 250px;
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: var(--bg-secondary);
+    box-shadow: -1rem 0 3rem #000;
+    display: flex;
+    flex-direction: column;
+    transition: .2s;
+    margin: 0;
+    scroll-snap-align: start;
+    clear: both;
+    position: relative;
+}
+
+.card:focus-within~.card, .card:hover~.card {
+    transform: translateX(130px);
+}
+
+.card:hover {
+    transform: translateY(-1rem);
+}
+
+.card:not(:first-child) {
+    margin-left: -130px;
+}
+
+
+.card-header {
+    margin-bottom: auto;
+}
+
+.card-header p {
+    font-size: 14px;
+    margin: 0 0 1rem;
+    color: #7a7a8c;
+}
+
+.card-header h2 {
+    font-size: 20px;
+    margin: .25rem 0 auto;
+    text-decoration: none;
+    color: inherit;
+    border: 0;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.card-header a {
+    text-decoration: none;
+    color: white;
+}
+
+.LOGbody{
+    padding: 0;
+    margin: 0;
+    background-color: var(--bg-secondary);
+    color: white;
+}
+.LOGcard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rem;
+}
+
+.LOGbutton{
+    font-family: 'Open Sans';
+    border-color:var(--nice-purple);
+    border-radius: 1rem;
+    background-color: var(--bg-primary);
+    color: white;
+    width: 6rem;
+}
+
+.LOGwave {
+    z-index: -1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.LOGwave svg {
+    position: relative;
+    display: block;
+    width: calc(197% + 1.3px);
+    height: 485px;
+}
+
+.LOGwave .shape-fill {
+    fill: var(--nice-purple);
+}
+
+.LOGlink{
+    text-decoration: none;
+    color: var(--bg-primary);
+}

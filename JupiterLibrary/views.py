@@ -1,14 +1,17 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import NewUserForm
+from .models import Book
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
 def index(request):
+	listBooks = Book.objects.all()
+	listBooks = listBooks[0:4]
 	if request.user.is_superuser:
 		return 	render(request,'super.html')
-	return render(request,'index.html')
+	return render(request,'index.html',{'listBooks':listBooks})
 
 def logout_request(request):
 	logout(request)
