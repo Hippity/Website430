@@ -14,8 +14,10 @@ def index(request):
 	return render(request,'index.html',{'listBooks':listBooks})
 
 def logout_request(request):
+	listBooks = Book.objects.all()
+	listBooks = listBooks[0:4]
 	logout(request)
-	return render(request,"index.html")
+	return render(request,"index.html",{'listBooks':listBooks})
 
 
 def register_request(request):

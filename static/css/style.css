@@ -188,12 +188,14 @@ main{
     margin: 0;
     background-color: var(--bg-secondary);
     color: white;
-}
-.LOGcard{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10rem;
+}
+.LOGcard{
+    margin-top: 5rem;
+    margin-left: -50%;
+
 }
 
 .LOGbutton{
@@ -219,7 +221,7 @@ main{
     position: relative;
     display: block;
     width: calc(197% + 1.3px);
-    height: 485px;
+    height: 385px;
 }
 
 .LOGwave .shape-fill {
@@ -229,4 +231,24 @@ main{
 .LOGlink{
     text-decoration: none;
     color: var(--bg-primary);
+}
+
+.LOGwave2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.LOGwave2 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.6px);
+    height: 210px;
+}
+
+.LOGwave2 .shape-fill {
+    fill: #9966CC;
 }
