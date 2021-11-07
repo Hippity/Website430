@@ -19,7 +19,7 @@ body::-webkit-scrollbar-thumb{
 }
 body{
     color:black;
-    background-color: white;
+    background-color: var(--bg-secondary);
     margin: 0;
     padding: 0;
 }
@@ -87,21 +87,17 @@ main{
 
 .title{
     display: flex;
+    color: white;
     justify-content: center;
 }
 
 .whatNew{
     display: flex;
     justify-content: center;
+    color: white;
     margin-top: 4rem;
 }
 
-.whatNewHR{
-    height: 3px;
-    color: var(--bg-secondary);
-    background-color: var(--nice-purple);
-
-}
 
 .card-list{
     color: white;   
@@ -183,6 +179,7 @@ main{
     height: 100%;
 }
 
+
 .LOGbody{
     padding: 0;
     margin: 0;
@@ -250,5 +247,5 @@ main{
 }
 
 .LOGwave2 .shape-fill {
-    fill: #9966CC;
+    fill: var(--nice-purple);
 }
