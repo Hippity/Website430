@@ -4,6 +4,7 @@ from .forms import NewUserForm
 from .models import Book
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from json import dump, dumps
 
 # Create your views here.
 def index(request):
@@ -51,4 +52,8 @@ def login_request(request):
 	return render(request=request, template_name="login.html", context={"form":form})
 
 def addEdit(request):
-	return render(request,'addEdit.html')
+	if request.user.is_superuser:
+		listBooks = Book.objects.all()
+		return render(request,'addEdit.html', {'bookList': listBooks })
+	else:
+		return index(request)

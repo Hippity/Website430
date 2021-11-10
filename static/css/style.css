@@ -249,3 +249,28 @@ main{
 .LOGwave2 .shape-fill {
     fill: var(--nice-purple);
 }
+
+
+.addEdit{
+    width: fit-content; 
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    width: auto;
+    flex-direction: row;
+}
+
+.addEditCard{
+    padding: 10rem;
+    padding-bottom: 0rem;
+    width: 500px;
+    height: 100%;
+    color: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

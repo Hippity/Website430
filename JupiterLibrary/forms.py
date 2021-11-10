@@ -23,7 +23,7 @@ class NewBookForm(forms.Form):
 	class Meta:
 		model = Book
 		fields = ('Title','Author First Name','Author Last Name','Publisher',
-		'Publication Date','Book Cover','Genre', 'Synopsis')
+		'Publication Date','Book Cover','Genre', 'Synopsis','Number Available','Number Borrowed')
 		
 	
 	
