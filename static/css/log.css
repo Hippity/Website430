@@ -1,0 +1,26 @@
+:root{
+    font-size: 16px;
+    font-family: 'Open Sans';
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+    --nice-purple: #9966CC;
+    --transition-speed: 600ms;
+}
+input{
+    background-color: transparent;
+    height: 2rem;
+    width: 100%;
+    color: var(--nice-purple);
+    font-family: 'Open Sans';
+    border: solid;
+    border-color: var(--bg-primary);
+
+}
+p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

@@ -1,22 +1,26 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth import login, authenticate, logout
-from .forms import NewUserForm
+from .forms import NewUserForm , NewBookForm
 from .models import Book
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from json import dump, dumps
+from datetime import datetime
+
 
 # Create your views here.
 def index(request):
 	listBooks = Book.objects.all()
-	listBooks = listBooks[0:4]
+	total = len(listBooks)
+	listBooks = listBooks[total-4:total]
 	if request.user.is_superuser:
 		return 	render(request,'super.html')
 	return render(request,'index.html',{'listBooks':listBooks})
 
 def logout_request(request):
 	listBooks = Book.objects.all()
-	listBooks = listBooks[0:4]
+	total = len(listBooks)
+	listBooks = listBooks[total-4:total]
 	logout(request)
 	return render(request,"index.html",{'listBooks':listBooks})
 
@@ -54,6 +58,18 @@ def login_request(request):
 def addEdit(request):
 	if request.user.is_superuser:
 		listBooks = Book.objects.all()
-		return render(request,'addEdit.html', {'bookList': listBooks })
+		exists = 'Nothing'
+		if request.method == 'POST':
+				form = NewBookForm(request.POST,request.FILES)
+				bookTitles = [book.title for book in listBooks]
+				print(request.FILES)
+				if request.POST['title'] in bookTitles:
+					exists = 'Yes'
+				if exists == 'Nothing':
+					if form.is_valid():
+						exists = 'No'
+						form.save()
+		form = NewBookForm() 
+		return render(request,'addEdit.html', {'bookList': listBooks , 'exists' : exists,'form' : form})
 	else:
 		return index(request)

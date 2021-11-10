@@ -1,0 +1,55 @@
+:root{
+    font-size: 16px;
+    font-family: 'Open Sans';
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+    --nice-purple: #9966CC;
+    --transition-speed: 600ms;
+}
+textarea,
+    input{
+    background-color: transparent;
+    color: var(--nice-purple);
+    font-family: 'Open Sans';
+    border: solid;
+    border-color: var(--bg-primary);
+
+}
+input[type='date']{
+    color: white;
+}
+p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+button{
+    font-family: 'Open Sans';
+    border-color:var(--nice-purple);
+    border-radius: 1rem;
+    background-color: var(--bg-primary);
+    color: white;
+    width: 6rem;
+}
+#id_image{
+    width: 100%;
+    border-color:var(--nice-purple);
+    border-radius: 1rem;
+    background-color: var(--bg-primary);
+    color: white;
+    font-family: 'Open Sans';
+}
+
+input[type='file']::file-selector-button {
+    background-color: transparent;
+    border: none;
+    color: var(--bg-secondary);
+    border-right: solid 2px var(--nice-purple);
+  }
+
+.addButton{
+    margin-left: 35%;
+}
