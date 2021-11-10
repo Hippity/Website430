@@ -6,7 +6,7 @@
     --bg-primary: #23232e;
     --bg-secondary: #141418;
     --nice-purple: #9966CC;
-    --transition-speed: 100ms;
+    --transition-speed: 600ms;
 }
 body::-webkit-scrollbar{
     width: 0.4rem;
@@ -19,7 +19,7 @@ body::-webkit-scrollbar-thumb{
 }
 body{
     color:black;
-    background-color: white;
+    background-color: var(--bg-secondary);
     margin: 0;
     padding: 0;
 }
@@ -87,19 +87,31 @@ main{
 
 .title{
     display: flex;
+    color: white;
     justify-content: center;
 }
+
+.whatNew{
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-top: 4rem;
+}
+
 
 .card-list{
     color: white;   
     display: flex;
+    margin-top: -10rem;
+    align-items: center;
+    justify-content: center;
     flex-direction: row;
     padding: 10rem;
 }
 
 .card {
-    height: 350px;
-    width: 300px;
+    height: 100%;
+    width: 400px;
     min-width: 250px;
     padding: 1.5rem;
     border-radius: 16px;
@@ -152,17 +164,35 @@ main{
     color: white;
 }
 
+.card-stuff{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3rem 0 0;
+
+}
+.card-im img{
+    display: block;
+    width: auto;
+    border-radius: 5%;
+    height: 100%;
+}
+
+
 .LOGbody{
     padding: 0;
     margin: 0;
     background-color: var(--bg-secondary);
     color: white;
-}
-.LOGcard{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10rem;
+}
+.LOGcard{
+    margin-top: 5rem;
+    margin-left: -50%;
+
 }
 
 .LOGbutton{
@@ -188,7 +218,7 @@ main{
     position: relative;
     display: block;
     width: calc(197% + 1.3px);
-    height: 485px;
+    height: 385px;
 }
 
 .LOGwave .shape-fill {
@@ -199,3 +229,91 @@ main{
     text-decoration: none;
     color: var(--bg-primary);
 }
+
+.LOGwave2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.LOGwave2 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.6px);
+    height: 210px;
+}
+
+.LOGwave2 .shape-fill {
+    fill: var(--nice-purple);
+}
+
+
+.addEdit{
+    width: fit-content; 
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    width: auto;
+    flex-direction: row;
+}
+
+.addEditCard{
+    padding: 10rem;
+    padding-bottom: 0rem;
+    width: 500px;
+    height: 100%;
+    color: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.autocomplete input[type=text]{
+    border: 1px solid var(--bg-primary);
+    background-color: transparent;
+    padding: 0.75rem;
+    color: white;
+
+}
+.autocomplete input[type=submit]{
+    background-color: var(--nice-purple);
+    border: transparent;
+    width: max-content;
+    height: 2rem;
+    color: white;
+    font-family: 'Open Sans';
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+  .autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+  }
+  .autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #e9e9e9;
+  }
+  .autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+  }

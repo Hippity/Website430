@@ -10,4 +10,6 @@ class Book(models.Model):
     image = models.ImageField(upload_to='images/')
     genre = models.TextField()
     synopsis = models.TextField()
+    numberAvailable = models.IntegerField()
+    numberBorrowed = models.IntegerField()
 
