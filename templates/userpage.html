@@ -112,39 +112,8 @@
     <main>
 
         
-        <h1 class="title"><b> WELCOME TO JUPITER LIBRARY</b></h1>
+        <h1 class="title"><b>Welcome {{user.username}}</b></h1>
 
-
-        
-        <!--
-            This is where you can start writing code
-        -->
-        <h2 class="whatNew"><b>WHAT'S NEW?</b></h2>
-        
-        <div class='card-list'>
-
-            {% for Book in listBooks %}
-
-            <div class="card">
-                <header class="card-header"> 
-                
-                    <p>{{Book.publicationDate}}</p>
-                  <a href="#"><h2>{{Book.title}}</h2> </a>
-                  <p>{{Book.genre}}</p>
-                </header>
-                <div class="card-stuff">
-                    <div class="card-im">
-                    <img src={% static Book.image %}>
-                    </div>
-
-                </div>
-
-            </div>
-
-            {% endfor %}
-        </div>
-        
-        
 
         
     </main>

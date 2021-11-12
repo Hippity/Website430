@@ -73,3 +73,6 @@ def addEdit(request):
 		return render(request,'addEdit.html', {'bookList': listBooks , 'exists' : exists,'form' : form})
 	else:
 		return index(request)
+
+def userpage(request):
+	return render(request, "userpage.html")
