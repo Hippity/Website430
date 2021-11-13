@@ -17,6 +17,10 @@ textarea,
     border-color: var(--bg-primary);
 
 }
+a{
+    text-decoration: none;
+    color: white;
+}
 input[type='date']{
     color: white;
 }
@@ -46,7 +50,7 @@ button{
 input[type='file']::file-selector-button {
     background-color: transparent;
     border: none;
-    color: var(--bg-secondary);
+    color: var(--nice-purple);
     border-right: solid 2px var(--nice-purple);
   }
 

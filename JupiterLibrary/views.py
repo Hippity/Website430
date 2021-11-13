@@ -4,8 +4,7 @@ from .forms import NewUserForm , NewBookForm
 from .models import Book
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
-from json import dump, dumps
-from datetime import datetime
+from django.views.decorators.csrf import csrf_exempt,csrf_protect
 
 
 # Create your views here.
@@ -55,22 +54,58 @@ def login_request(request):
 	form = AuthenticationForm()
 	return render(request=request, template_name="login.html", context={"form":form})
 
+@csrf_exempt
 def addEdit(request):
 	if request.user.is_superuser:
 		listBooks = Book.objects.all()
 		exists = 'Nothing'
+		formSearch = NewBookForm()
+		search=False
 		if request.method == 'POST':
-				form = NewBookForm(request.POST,request.FILES)
-				bookTitles = [book.title for book in listBooks]
-				print(request.FILES)
-				if request.POST['title'] in bookTitles:
-					exists = 'Yes'
-				if exists == 'Nothing':
-					if form.is_valid():
-						exists = 'No'
-						form.save()
+				if 'add' in request.POST:
+					form = NewBookForm(request.POST,request.FILES)
+					bookTitles = [book.title for book in listBooks]
+					if request.POST['title'] in bookTitles:
+						exists = 'Yes'
+					if exists == 'Nothing':
+						if form.is_valid():
+							exists = 'No'
+							form.save()
+				if 'search' in request.POST:
+					search = True
+					bookTitles = [book.title for book in listBooks]
+					title = request.POST['searchBook']
+					if title in bookTitles:
+						instance = Book.objects.get(title=title)
+						formSearch = NewBookForm(instance = instance)
+					else:
+						exists = 'NO'
+				if 'Delete' in request.POST:
+					title = request.POST['title']
+					instance = Book.objects.get(title=title)
+					instance.delete()
+
+				if 'Update' in request.POST:
+					bookTitles = [book.title for book in listBooks]
+					title = request.POST['title']
+					if title not in bookTitles:
+						exists = 'NO3'
+					else:
+						instance = Book.objects.get(title=title)
+						formSearch = NewBookForm(request.POST, instance = instance)
+						if formSearch.is_valid():
+							formSearch.save()
+
+
+					
+			
+
+
+
+
 		form = NewBookForm() 
-		return render(request,'addEdit.html', {'bookList': listBooks , 'exists' : exists,'form' : form})
+		return render(request,'addEdit.html', {'bookList': listBooks , 
+		'exists' : exists,'form' : form, "iAmSearching":search, 'searchForm':formSearch})
 	else:
 		return index(request)
 
