@@ -4,18 +4,19 @@
 	<meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/explore.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    
     <title>Home</title>
 
 </head>
 <body>
     <nav class='navbar'>
         <ul class="navbar-nav">
-
+s
             <li class="navbar-item">
                 
                 {%if user.is_authenticated%}
@@ -112,9 +113,16 @@
     <main>
 
         
-        <h1 class="title"><b> Explore</b></h1>
+    <h1 class="title"><b> Explore</b></h1>
+    <h1 class="title"><b> What are you looking for ?</b></h1>
 
-
+    <form>
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname"><br><br>
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname"><br><br>
+        <input type="submit" value="Submit">
+    </form>
 
         
     </main>
