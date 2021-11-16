@@ -9,6 +9,8 @@
     --transition-speed: 600ms;
 }
 
+
+
 input{
     background-color: transparent;
     color: var(--nice-purple);
