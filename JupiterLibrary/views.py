@@ -113,4 +113,5 @@ def userpage(request):
 	return render(request, "userpage.html")
 
 def explore(request):
-	return render(request,"explore.html")
+	listBooks = Book.objects.all()
+	return render(request,"explore.html", {'bookList':listBooks})
