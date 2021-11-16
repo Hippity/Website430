@@ -8,9 +8,6 @@
     --nice-purple: #9966CC;
     --transition-speed: 600ms;
 }
-
-
-
 input{
     background-color: transparent;
     color: var(--nice-purple);
@@ -24,6 +21,3 @@ input{
     justify-content: center;
     align-items: center;
 }
-
-
-
