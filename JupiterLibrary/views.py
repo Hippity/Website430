@@ -6,6 +6,13 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from json import dump, dumps
 from datetime import datetime
+from django.views.generic import (
+    CreateView, 
+    ListView, 
+    UpdateView, 
+    DetailView, 
+    DeleteView
+)
 
 
 # Create your views here.
@@ -79,3 +86,7 @@ def userpage(request):
 
 def explore(request):
 	return render(request,"explore.html")
+
+def bookPage(request):
+	listBooks = Book.objects.all()
+	return render(request,'bookPage.html',{'book':listBooks[0]})

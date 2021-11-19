@@ -1,0 +1,90 @@
+:root{
+    font-size: 16px;
+    font-family: 'Open Sans';
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+    --nice-purple: #9966CC;
+    --transition-speed: 600ms;
+}
+
+h1{
+    margin-top: 2.5rem;
+}
+.bigContainer{
+    padding: 5rem;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    border: 5px;
+    border-color: white;
+    justify-content: center;
+
+}
+
+.imageContainer{
+    display: flex;
+    flex-direction: column;
+    padding-right:2rem ;
+
+}
+
+.bigContainer{
+    margin-top: 3rem;
+    padding: 5rem;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    border: 5px;
+    border-color: white;
+    justify-content: center;
+}
+
+
+.bookcount{
+    margin-top: 2rem ;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.number{
+    color:#9966CC;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+p{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.custom-shape-divider-bottom-1637340082 {
+    position: relative;
+    bottom: 0;
+    z-index: -10;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1637340082 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 440px;
+}
+
+.custom-shape-divider-bottom-1637340082 .shape-fill {
+    fill: #23232E;
+}

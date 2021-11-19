@@ -27,4 +27,5 @@ urlpatterns = [
     url('addEdit',views.addEdit),
     url('userpage',views.userpage),
     url('explore',views.explore),
+    path('bookPage',views.bookPage)
 ]
