@@ -1,5 +1,6 @@
 from django.db import models
 from PIL import Image
+from django.db.models.fields import IntegerField
 
 # Create your models here.
 class Book(models.Model):

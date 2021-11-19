@@ -12,6 +12,20 @@
     
     <title>Home</title>
 
+    <script src=  
+    "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+</script>  
+
+<script src=  
+    "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+</script>  
+
+<link href=  
+    "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+    rel="stylesheet" type="text/css" />
+
+
+
 </head>
 <body>
     <nav class='navbar'>
@@ -113,18 +127,27 @@ s
     <main>
 
         
-    <h1 class="title"><b> Explore</b></h1>
-    <h1 class="title"><b> What are you looking for ?</b></h1>
+        <h1 class="title"><b> Explore the Library</b></h1>
 
-    <form>
-        <label for="fname">First name:</label>
-        <input type="text" id="fname" name="fname"><br><br>
-        <label for="lname">Last name:</label>
-        <input type="text" id="lname" name="lname"><br><br>
-        <input type="submit" value="Submit">
-    </form>
+        <div class='exploreCard'>
+        <input type="text" name="searchBook" id="tags">
+                    <script>
+                        $(function() {
+                                var availableTags = [
+                                    {% for book in bookList %}
+                                        "{{book.title}}",
+                                    {% endfor %}
+                                ];
+                                $( "#tags" ).autocomplete({
+                                source: availableTags
+                                });
+                            });
+                    </script>     
+                    
 
-        
+                    <p>this is a test</p>
+                    
+        </div>
     </main>
 </body>
 </html>
