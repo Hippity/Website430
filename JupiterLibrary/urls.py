@@ -24,5 +24,7 @@ urlpatterns = [
     url('logout',views.logout_request),
     url('register',views.register_request),
     url('login',views.login_request),
-    url('addEdit',views.addEdit)
+    url('addEdit',views.addEdit),
+    url('userpage',views.userpage),
+    url('explore',views.explore),
 ]
