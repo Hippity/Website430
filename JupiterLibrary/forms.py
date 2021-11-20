@@ -29,7 +29,11 @@ class NewBookForm(ModelForm):
 		}
 		fields+=['image','genre', 'synopsis','numberAvailable','numberBorrowed']
 
-		
+class NewUserInfo:
+	class Meta: 
+		model=UserInfo 
+		fields= 
+		['username', 'numBorrowed','numRead','image','backgroundInfo']
 
 	
 	

@@ -110,20 +110,23 @@
     </div>
 
     <main>
-
-        
-        <h1 class="title"><b>Welcome {{user.username}}</b></h1>
-        <div class= "left">
-            <p>Profile Picture: <br>
-            {{user.pic}}</p>
-        </div>
-        <div class="right">
-            <p>Name: {{user.fname}} {{user.lname}} </p>
-            <p>Email: {{user.email}}</p>
-            <p>Age: {{user.age}}</p> 
-        </div>
+        {% if user.fname_authenticated or user.lname_authenticated or user.email_authenticated or user.age_authenticated%}
+            <a href="userInfo.html" class="nav-link"> 
+                userInfo
+            </a>
+        {% else%}
+            <h1 class="title"><b>Welcome {{user.username}}</b></h1>
+            <div class= "left">
+                <p>Profile Picture: <br>
+                {{user.pic}}</p>
+            </div>
+            <div class="right">
+                <p>Name: {{user.fname}} {{user.lname}} </p>
+                <p>Email: {{user.email}}</p>
+                <p>Age: {{user.age}}</p> 
+            </div>
+        {%endif%}
         <!--<p>Books borrowed:       </p> -->
-
-    </main>
+     </main>
 </body>
 </html>
