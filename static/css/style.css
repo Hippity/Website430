@@ -274,3 +274,14 @@ main{
     align-items: center;
 }
 
+
+.left{
+    position: absolute;
+    margin-bottom: 10px;
+    border-radius: 5px;
+
+}
+
+.right{
+    position: relative;
+}

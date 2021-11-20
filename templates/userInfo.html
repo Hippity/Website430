@@ -112,18 +112,20 @@
     <main>
 
         
-        <h1 class="title"><b>Welcome {{user.username}}</b></h1>
-        <div class= "left">
-            <p>Profile Picture: <br>
-            {{user.pic}}</p>
-        </div>
-        <div class="right">
-            <p>Name: {{user.fname}} {{user.lname}} </p>
-            <p>Email: {{user.email}}</p>
-            <p>Age: {{user.age}}</p> 
-        </div>
-        <!--<p>Books borrowed:       </p> -->
-
-    </main>
-</body>
-</html>
+        <h1 class="title"><b>{{user.username}} information</b></h1>
+        <body class=fillInfo>
+            <form>
+                <label for="user.fname">First name:</label><br>
+                <input type="text" id="user.fname" name="user.fname"><br><br>
+                <label for="user.lname">Last name:</label><br>
+                <input type="text" id="user.lname" name="user.lname"><br><br>
+                <label for="user.email">Email:</label><br>
+                <input type="text" id="user.email" name="user.email"><br><br>                
+		        <label for="user.age">Age:</label><br>
+                <input type="number" id="user.age" name="user.age"><br><br>
+                <label for="user.pic">Profile Picture:</label><br>
+                <input type="file" accept="image/*"/><br><br>
+                <input type="submit" value="Submit">
+                
+              </form>
+        </body>
