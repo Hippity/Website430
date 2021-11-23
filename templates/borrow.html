@@ -4,12 +4,26 @@
 	<meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/borrow.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>Home</title>
+
+    <script src=  
+        "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+    </script>  
+    
+    <script src=  
+        "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+    </script>  
+    
+    <link href=  
+        "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+
 
 </head>
 <body>
@@ -111,39 +125,108 @@
 
     <main>
 
-        
-        <h1 class="title"><b> WELCOME TO JUPITER LIBRARY</b></h1>
+        <h1 class="title"><b> Borrow or Return a Book</b></h1>
+
+        {%if user.is_authenticated%}        
+
+        <div class="borrowReturn">
+            <div class="borrowReturnCard">
+                <h1>Borrow Book</h1>
+
+                {% if  msg == 'Err1'%}
+                <p style="color: red;">You cannot borrow the same book twice</p>
+                {% else %}
+                {% if msg == 'Err2' %}
+                <p style="color: red;">No More Available Books</p>
+                {% endif %}
+                {% if msg == 'Done1' %}
+                <p style="color: green;">Success</p>
+                {% endif %}
+                {% endif %}
 
 
-        
-        <!--
-            This is where you can start writing code
-        -->
-        <h2 class="whatNew"><b>WHAT'S NEW?</b></h2>
-        
-        <div class='card-list'>
+<style> 
+input{
+    background-color: transparent;
+    color: var(--nice-purple);
+    font-family: 'Open Sans';
+    border: solid;
+    border-color: var(--bg-primary);
+        }
+</style>
 
-            {% for Book in listBooks %}
-
-            <div class="card">
-                <header class="card-header"> 
-                
-                    <p>{{Book.publicationDate}}</p>
-                  <a href="#"><h2>{{Book.title}}</h2> </a>
-                  <p>{{Book.genre}}</p>
-                </header>
-                <div class="card-stuff">
-                    <div class="card-im">
-                    <img src={% static Book.image %}>
+                <form method='post'>
+                    <div class='flex'>
+                        <input type="text" name="searchBook" id="tags" style="">
+                        <script>
+                            $(function() {
+                                    var availableTags = [
+                                        {% for book in bookList %}
+                                            "{{book.title}}",
+                                        {% endfor %}
+                                    ];
+                                    $( "#tags" ).autocomplete({
+                                    source: availableTags
+                                    });
+                                });
+                        </script>
+    
+                        <button type="submit" name="borrow">
+                            Borrow
+                        </button>
                     </div>
-
-                </div>
-
+                </form>
+                
             </div>
+            <div class= borrowReturnCard >
+                <h1>Return Book</h1>
+                {% if numBorrowed == 1 %}
+                You Have {{numBorrowed}} Borrowed Book
+                {% else %}
+                You Have {{numBorrowed}} Borrowed Books
+                {% endif %}
 
-            {% endfor %}
+                <ul>
+                {% for book in borrowedBooks %}
+                    <li>{{book.title}}</li>
+                {% endfor %}
+                </ul>
+
+                {% if msg == 'Done2' %}
+                <p style="color: green;">Success</p>
+                {% endif %}
+               
+            <form method='post'>
+                <div class='flex'>
+                    <input type="text" name="searchBook2" id="tags2">
+                    <script>
+                        $(function() {
+                                var availableTags = [
+                                    {% for book in borrowedBooks %}
+                                        "{{book.title}}",
+                                    {% endfor %}
+                                ];
+                                $( "#tags2" ).autocomplete({
+                                source: availableTags
+                                });
+                            });
+                    </script>
+
+                    <button type="submit" name="return">
+                        Return
+                    </button>
+                </div>
+            </form>
+           
+            
         </div>
-        
+
+        {% else %}
+
+        <h1 class="youMust">You must be Logged In </h1>
+
+        {% endif %}
+
         
 
         

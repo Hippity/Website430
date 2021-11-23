@@ -1,7 +1,8 @@
 from django.shortcuts import render , redirect
-from django.contrib.auth import login, authenticate, logout
-from .forms import NewUserForm , NewBookForm
-from .models import Book
+from django.contrib.auth import login, authenticate, logout 
+from django.contrib.auth.models import User
+from .forms import NewBorrowedBookForm, NewUserForm , NewBookForm , NewUserInfoForm
+from .models import Book, BorrowedBook, UserInfo 
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from json import dump, dumps
@@ -14,7 +15,6 @@ from django.views.generic import (
     DeleteView
 )
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
-
 
 # Create your views here.
 def index(request):
@@ -113,11 +113,56 @@ def addEdit(request):
 
 					
 			
+def makeInfo(request):
+	form = NewUserInfoForm()
+	userInfos = UserInfo.objects.all()
+	users = [info.username for info in userInfos]
+	if request.method == 'POST':
+		if 'create' in request.POST:
+			bio = request.POST['bio']
+			fName = request.POST['fName']
+			lName = request.POST['lName']
+			username = request.user.username
+			email = request.user.email
+			if username not in users:
+				info = NewUserInfoForm({'email':email,'username':username,'bio':bio})
+				info.save()
+				return index(request)
+			else:
+				info = UserInfo.objects.get(username=username)
+				info.bio = bio
+				info.fName= fName
+				info.lName=lName
+				info.save()
+				return index(request)
 
+	return render(request,'makeInfo.html',{'form':form})
 
-
+@csrf_exempt
 def userpage(request):
-	return render(request, "userpage.html")
+	msg = 'None'
+	userInfos = UserInfo.objects.all()
+	users = [info.username for info in userInfos]
+	if request.user.username not in users:
+		return makeInfo(request)
+	instance = UserInfo.objects.get(username=request.user.username)
+	if request.method == 'POST':
+		if 'del' in request.POST:
+			borrowedBooks = BorrowedBook.objects.all()
+			msg = 'None'
+			myBooks = []
+			for book in borrowedBooks:
+				if book.username == request.user.username:
+					myBooks.append(book)
+			if len(myBooks ) == 0:
+				instance = UserInfo(username = request.user.username)
+				instance.delete()
+				user = User.objects.get(username = request.user.username)
+				user.delete()
+				return index(request)
+			else:
+				msg = 'Err'
+	return render(request, "userpage.html",{'info':instance, 'msg':msg})
 
 @csrf_exempt
 def explore(request):
@@ -138,12 +183,66 @@ def explore(request):
 		title = request.POST['whatToView']
 		return bookPage(request,title)
 
-
-		
-
-
 	return render(request,"explore.html",{'bookList':listBooks,'result':instance,'exists' : exists})
 
 def bookPage(request,title):
 	instance = Book.objects.get(title=title)
 	return render(request,'bookPage.html',{'book':instance})
+@csrf_exempt
+def borrow(request):
+	listBooks = Book.objects.all()
+	username = request.user.username
+	borrowedBooks = BorrowedBook.objects.all()
+	msg = 'None'
+	myBooks = []
+	for book in borrowedBooks:
+		if book.username == username:
+			myBooks.append(book)
+
+	numBorrowed = len(myBooks)
+	myBooksTitles = [book.title for book in myBooks]
+	if request.method == 'POST':
+		if 'borrow' in request.POST:
+			print(request.POST)
+			title =  request.POST['searchBook']
+			instance = Book.objects.get(title=title)
+			if title in myBooksTitles:
+				msg = "Err1"
+			elif instance.numberBorrowed == instance.numberAvailable:
+				msg = 'Err2'
+			else:
+				borrow = NewBorrowedBookForm(
+				{'username' : username,
+				'title' :title,
+				'days' : 10}
+				)
+				instance.numberBorrowed += 1
+				instance.save()
+				borrow.save()
+				msg = 'Done1'
+
+		if 'return' in request.POST:
+			title =  request.POST['searchBook2']
+			instance = BorrowedBook.objects.get(title=title, username=username)
+			instance2 = Book.objects.get(title=title)
+			instance2.numberBorrowed -= 1
+			instance2.save()
+			instance.delete()
+			msg = 'Done2'
+
+	return render(request,"borrow.html",{'bookList':listBooks , 'borrowedBooks':myBooks , 'numBorrowed': numBorrowed , 'msg':msg})
+
+def statuses(request):
+	if request.user.is_superuser:
+		borrowedBooks = BorrowedBook.objects.all()
+		overdue = []
+		notOverdue = []
+		for book in borrowedBooks:
+			if book.days > 0:
+				notOverdue.append(book)
+			else:
+				overdue.append(book)
+
+		return render(request,"statuses.html", {'overdue':overdue, 'notOverdue':notOverdue})
+	else:
+		return index(request)

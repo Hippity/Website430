@@ -27,5 +27,8 @@ urlpatterns = [
     url('addEdit',views.addEdit),
     url('userpage',views.userpage),
     url('explore',views.explore),
-    path('bookPage',views.bookPage)
+    path('bookPage',views.bookPage),
+    url('borrow',views.borrow),
+    url('statuses',views.statuses),
+    url('makeInfo',views.makeInfo)
 ]

@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/idk.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
@@ -24,7 +23,163 @@
     "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
     rel="stylesheet" type="text/css" />
 
+<style>
+:root{
+    font-size: 16px;
+    font-family: 'Open Sans';
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+    --nice-purple: #9966CC;
+    --transition-speed: 600ms;
+    --body-bg-color: #e5f4f9;
+    --body-color-light: #8b939c;
+    --body-font: "Roboto", sans-serif;
+    --page-bg-color: #f2f5f7;
+    --body-color: #3d4954;
+    --border-color: #b8bec3;
+    --placeholder: #ccd0d2;
+}
 
+.title{
+    font-size: 60px;
+}
+.search{
+    size: 90%;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+} 
+input{
+    font-size: 2.5rem;
+    background-color: transparent;
+    color: white;
+    width: 40rem;
+    height: 3rem;
+}
+
+.results {
+    position: relative;
+    top : 100px;
+    margin-left: 5rem;
+    width: 100%;
+   }
+
+
+
+.book {
+background: #fff;
+}
+   
+   
+.book-cell {
+    margin-left: 5rem ;
+    top: 100px;
+    display: flex;
+    padding: 1rem;
+    width: 40%;
+    height: 250px;
+    margin-right: 1px;
+}
+
+.book-photo {
+    width: 180px;
+    flex-shrink: 0;
+    bottom: -35px;
+    left: 35px;
+    border-radius: 2px;
+    box-shadow: -2px 6px 19px 0px #7f818e;
+    transition: .3s ease;
+
+   }
+   
+ .book-img {
+    flex-shrink: 0;
+   }
+   
+.book-title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+   }
+   
+.book-title {
+    color: #ffffff;
+    font-weight: 600;
+   }
+   
+.book-author {
+    margin-top: 3px;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+   }
+   
+.book-content {
+    padding: 0 20px;
+    color: #ffffff;
+    overflow: hidden;
+   }
+   
+fieldset,
+   label {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+   }
+   
+h1 {
+    font-size: 0.5em;
+    margin: 10px;
+   }
+   
+   .book-voters {
+    color: #fff;
+    vertical-align: sub;
+    font-size: 13px;
+    margin-left: 7px;
+    white-space: nowrap;
+    margin-top: 7px;
+   }
+   
+   .book-sum {
+    margin-top: 20px;
+    font-size: 14px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+   }
+   
+   .book-see {
+    cursor: pointer;
+    margin-top: 25px;
+    text-align: center;
+    background-color: #fff;
+    color: var(--nice-purple);
+    font-weight: 600;
+    padding: 8px;
+    font-size: 14px;
+    width: 160px;
+    border-radius: 20px;
+    
+   }
+   button{
+    height: 3rem;
+    font-family: 'Open Sans';
+    border-color:var(--nice-purple);
+    border-radius: 1rem;
+    background-color: var(--bg-primary);
+    color: white;
+    width: 6rem;
+}
+
+</style>
 
 </head>
 <body>
@@ -34,14 +189,14 @@ s
             <li class="navbar-item">
                 
                 {%if user.is_authenticated%}
-                <a href="#" class="nav-link">
+                <a href="userpage.html" class="nav-link">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                     </svg>
                 <span class="nav-text">{{user.username}}</span>
                 {% else %}
-                <a href="#" class="nav-link">
+                <a href="login.html" class="nav-link">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
@@ -61,7 +216,7 @@ s
                 </a>
             </li>
             <li class="navbar-item">
-                <a href="#" class="nav-link">
+                <a href="explore.html" class="nav-link">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                       </svg>
@@ -69,7 +224,7 @@ s
                 </a>
             </li>
             <li class="navbar-item">
-                <a href="#" class="nav-link">
+                <a href="borrow.html" class="nav-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
                     <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
                 </svg>

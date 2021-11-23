@@ -1,9 +1,10 @@
+from django.db.models import fields
 from django.forms import ModelForm, widgets
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms.fields import DateField
-from .models import Book
+from .models import Book, BorrowedBook, UserInfo
 
 class NewUserForm(UserCreationForm):
 	email = forms.EmailField(required=True)
@@ -30,6 +31,14 @@ class NewBookForm(ModelForm):
 		fields+=['image','genre', 'synopsis','numberAvailable','numberBorrowed']
 
 		
+class NewBorrowedBookForm(ModelForm):
 
-	
-	
+	class Meta:
+		model = BorrowedBook
+		fields = ['username','title','days']
+
+
+class NewUserInfoForm(ModelForm):
+	class Meta:
+		model = UserInfo
+		fields = ['email','username','bio','fName','lName']

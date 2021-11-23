@@ -8,8 +8,7 @@
     --nice-purple: #9966CC;
     --transition-speed: 600ms;
 }
-textarea,
-    input{
+ input{
     background-color: transparent;
     color: var(--nice-purple);
     font-family: 'Open Sans';
@@ -17,14 +16,9 @@ textarea,
     border-color: var(--bg-primary);
 
 }
-a{
-    text-decoration: none;
-    color: white;
-}
-input[type='date']{
-    color: white;
-}
 p{
+    padding: 0px;
+    margin: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,24 +32,10 @@ button{
     color: white;
     width: 6rem;
 }
-#id_image{
-    width: 100%;
-    border-color:var(--nice-purple);
-    border-radius: 1rem;
-    background-color: var(--bg-primary);
-    color: white;
-    font-family: 'Open Sans';
-}
 
-input[type='file']::file-selector-button {
-    background-color: transparent;
-    border: none;
-    color: var(--bg-secondary);
-    border-right: solid 2px var(--nice-purple);
-  }
 
-  
-.addEdit{
+
+.borrowReturn{
     width: fit-content; 
     display: flex;
     justify-content: space-between;
@@ -65,8 +45,8 @@ input[type='file']::file-selector-button {
     flex-direction: row;
 }
 
-.addEditCard{
-    padding: 10rem;
+.borrowReturnCard{
+    padding: 6rem;
     padding-bottom: 0rem;
     width: 500px;
     height: 100%;
@@ -78,3 +58,10 @@ input[type='file']::file-selector-button {
     align-items: center;
 }
 
+
+h1{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

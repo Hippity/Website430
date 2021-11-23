@@ -1,0 +1,50 @@
+:root{
+    font-size: 16px;
+    font-family: 'Open Sans';
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+    --nice-purple: #9966CC;
+    --transition-speed: 600ms;
+}
+p{
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.overdue{
+    width: fit-content; 
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    width: auto;
+    flex-direction: row;
+}
+
+.overdueCard{
+    padding: 10rem;
+    padding-bottom: 0rem;
+    width: 500px;
+    height: 100%;
+    color: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+h1{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
