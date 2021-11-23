@@ -119,9 +119,31 @@ def addEdit(request):
 def userpage(request):
 	return render(request, "userpage.html")
 
+@csrf_exempt
 def explore(request):
-	return render(request,"explore.html")
-
-def bookPage(request):
 	listBooks = Book.objects.all()
-	return render(request,'bookPage.html',{'book':listBooks[0]})
+	instance = ''
+	exists = ''
+	if 'search' in request.POST:
+		exists='YES'
+		search = True
+		bookTitles = [book.title for book in listBooks]
+		title = request.POST['searchBook']
+		if title in bookTitles:
+			instance = Book.objects.get(title=title)
+		else:
+			exists = 'NO'	
+	
+	if 'view' in request.POST:
+		title = request.POST['whatToView']
+		return bookPage(request,title)
+
+
+		
+
+
+	return render(request,"explore.html",{'bookList':listBooks,'result':instance,'exists' : exists})
+
+def bookPage(request,title):
+	instance = Book.objects.get(title=title)
+	return render(request,'bookPage.html',{'book':instance})

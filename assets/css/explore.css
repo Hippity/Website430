@@ -1,0 +1,267 @@
+:root{
+    font-size: 16px;
+    font-family: 'Open Sans';
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+    --nice-purple: #9966CC;
+    --transition-speed: 600ms;
+    --body-bg-color: #e5f4f9;
+    --body-color-light: #8b939c;
+    --body-font: "Roboto", sans-serif;
+    --page-bg-color: #f2f5f7;
+    --body-color: #3d4954;
+    --border-color: #b8bec3;
+    --placeholder: #ccd0d2;
+}
+
+.title{
+    font-size: 60px;
+}
+ input  {
+     position: relative;
+     height: 25px;
+     width: 1000px;
+     display: block;
+     background-color: grey;
+     border: 3px solid lightblue;
+     font-weight: 600;
+     padding: 0 10px 0 40px;
+     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%238b939c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-search'%3e%3ccircle cx='11' cy='11' r='8'/%3e%3cpath d='M21 21l-4.35-4.35'/%3e%3c/svg%3e");
+     background-repeat: no-repeat;
+     background-size: 15px;
+     background-position: 15px 50%;
+     color: var(--body-color);
+     font-family: var(--body-font);
+    }
+
+
+select{
+    position: absolute;
+    top: 132px;
+    right: 70px;
+}
+
+.search-bar{
+    position: relative;
+    top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-slide {
+    position: relative;
+    top : 100px;
+    width: 100%;
+   }
+
+
+
+.book {
+background: #fff;
+}
+   
+   
+.book-cell {
+    position: relative;
+    top: 100px;
+    display: flex;
+    padding: 25px;
+    width: 40%;
+    height: 250px;
+    margin-right: 1px;
+}
+
+.flickity-page-dots {
+    display: none;
+   }
+   
+.flickity-prev-next-button .arrow {
+    fill: #d6d6d6;
+   }
+   
+.flickity-prev-next-button svg {
+    left: 25%;
+    top: 25%;
+    width: 50%;
+    height: 50%;
+   }
+.flickity-prev-next-button. {
+    &.previous {
+     left: 15px;
+    }
+    &.next {
+     right: 15px;
+    }
+   }
+   
+.flickity-viewport {
+    overflow: visible;
+   }
+   
+.book-photo {
+    width: 180px;
+    flex-shrink: 0;
+    bottom: -35px;
+    left: 35px;
+    border-radius: 2px;
+    box-shadow: -2px 6px 19px 0px #7f818e;
+    transition: .3s ease;
+
+   }
+   
+ .book-img {
+    flex-shrink: 0;
+   }
+   
+.book-title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+   }
+   
+.book-title {
+    color: #ffffff;
+    font-weight: 600;
+   }
+   
+.book-author {
+    margin-top: 3px;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+   }
+   
+.book-content {
+    padding: 0 20px;
+    color: #ffffff;
+    overflow: hidden;
+   }
+   
+fieldset,
+   label {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+   }
+   
+h1 {
+    font-size: 0.5em;
+    margin: 10px;
+   }
+.rating {
+    border: none;
+   }
+   
+.rating > input {
+    display: none;
+   }
+.rating > label:before {
+    margin-right: 5px;
+    margin-top: 10px;
+    font-size: 0.9em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+   }
+   
+.rating > label {
+    color: #fff;
+    float: right;
+   }
+   
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+ color: #d85d61;
+   }
+   .rating > input:checked + label:hover,
+   .rating > input:checked ~ label:hover,
+   .rating > label:hover ~ input:checked ~ label,
+   .rating > input:checked ~ label:hover ~ label {
+    color: #d85d61;
+   }
+   
+   .blue > input:checked ~ label,
+   .blue:not(:checked) > label:hover,
+   .blue:not(:checked) > label:hover ~ label {
+    color: #458997;
+   }
+   .blue > input:checked + label:hover,
+   .blue > input:checked ~ label:hover,
+   .blue > label:hover ~ input:checked ~ label,
+   .blue > input:checked ~ label:hover ~ label {
+    color: #458997;
+   }
+   
+   .purple > input:checked ~ label,
+   .purple:not(:checked) > label:hover,
+   .purple:not(:checked) > label:hover ~ label {
+    color: #a76287;
+   }
+   .purple > input:checked + label:hover,
+   .purple > input:checked ~ label:hover,
+   .purple > label:hover ~ input:checked ~ label,
+   .purple > input:checked ~ label:hover ~ label {
+    color: #a76287;
+   }
+   
+   .yellow > input:checked ~ label,
+   .yellow:not(:checked) > label:hover,
+   .yellow:not(:checked) > label:hover ~ label {
+    color: #ffad58;
+   }
+   .yellow > input:checked + label:hover,
+   .yellow > input:checked ~ label:hover,
+   .yellow > label:hover ~ input:checked ~ label,
+   .yellow > input:checked ~ label:hover ~ label {
+    color: #ffad58;
+   }
+   
+   .dark-purp > input:checked ~ label,
+   .dark-purp:not(:checked) > label:hover,
+   .dark-purp:not(:checked) > label:hover ~ label {
+    color: #905587;
+   }
+   .dark-purp > input:checked + label:hover,
+   .dark-purp > input:checked ~ label:hover,
+   .dark-purp > label:hover ~ input:checked ~ label,
+   .dark-purp > input:checked ~ label:hover ~ label {
+    color: #905587;
+   }
+   
+   .book-voters {
+    color: #fff;
+    vertical-align: sub;
+    font-size: 13px;
+    margin-left: 7px;
+    white-space: nowrap;
+    margin-top: 7px;
+   }
+   
+   .book-sum {
+    margin-top: 20px;
+    font-size: 14px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+   }
+   
+   .book-see {
+    margin-top: 25px;
+    text-align: center;
+    background-color: #fff;
+    color: #fbadaf;
+    font-weight: 600;
+    padding: 8px;
+    font-size: 14px;
+    width: 160px;
+    border-radius: 20px;
+    
+   }
+   
