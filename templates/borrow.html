@@ -76,16 +76,6 @@
                 </a>
             </li>
 
-            <li class="navbar-item">
-                <a href="#" class="nav-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                        <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
-                        <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
-                      </svg>
-                <span class="nav-text">Friends</span>
-                </a>
-            </li>
 
             {%if user.is_authenticated%}
             <li class="navbar-item">
@@ -123,37 +113,102 @@
         </svg>
     </div>
 
+    <style> 
+        input{
+            background-color: transparent;
+            color: white;
+            font-family: 'Open Sans';
+            border: solid;
+            border-color: var(--bg-primary);
+                }
+
+        
+        .mytabs {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 50%; 
+            margin: 10rem  10rem;
+            border: solid white 2px;
+            color: white;
+        }
+        label{
+            color: white;
+        }
+        
+        .mytabs input[type="radio"] {
+            display: none;
+        }
+        .labelA {
+            background: #23232e;
+            font-weight: bold;
+            color: white;
+            padding: 1rem;
+        }
+        
+        .mytabs .tab {
+            width: 100%;
+            padding: 20px;
+            background: #141418;
+            order: 1;
+            display: none;
+        }
+        .mytabs .tab h2 {
+            font-size: 3em;
+        }
+        
+        .mytabs input[type='radio']:checked + label + .tab {
+            display: block;
+        }
+        
+        .mytabs input[type="radio"]:checked + label {
+            background: #141418;
+        }
+
+        li{
+            color: white;
+            
+        }
+
+        .err{
+            padding: 0px;
+        }
+        </style>
+
     <main>
 
         <h1 class="title"><b> Borrow or Return a Book</b></h1>
 
-        {%if user.is_authenticated%}        
+        {%if user.is_authenticated%}     
+        
+        
 
-        <div class="borrowReturn">
-            <div class="borrowReturnCard">
-                <h1>Borrow Book</h1>
+        <div style="display: flex; justify-content: center;">
+            {% if  msg == 'Err1'%}
+                    <p style="color: red;">You cannot borrow the same book twice</p>
+                    {% else %}
+                    {% if msg == 'Err2' %}
+                    <p style="color: red;">No More Available Books</p>
+                    {% endif %}
+                    {% if msg == 'Err3' %}
+                    <p style="color: red;">You cannot borrow books if you have overdue books</p>
+                    {% endif %}
+                    {% if msg == 'Err4' %}
+                    <p style="color: red;">You cannot borrow more than five books</p>
+                    {% endif %}
+                    {% if msg == 'Done1' %}
+                    <p style="color: green;">Success</p>
+                    {% endif %}
+                    {% endif %}
+    
+            </div>
 
-                {% if  msg == 'Err1'%}
-                <p style="color: red;">You cannot borrow the same book twice</p>
-                {% else %}
-                {% if msg == 'Err2' %}
-                <p style="color: red;">No More Available Books</p>
-                {% endif %}
-                {% if msg == 'Done1' %}
-                <p style="color: green;">Success</p>
-                {% endif %}
-                {% endif %}
+        <div class="mytabs">
+           
+            <input type="radio" id='tabB' name="mytabs" checked='checked'>
+            <label class='labelA' for="tabB">Borrow Book</label>
+            <div class="tab">
+                
 
-
-<style> 
-input{
-    background-color: transparent;
-    color: var(--nice-purple);
-    font-family: 'Open Sans';
-    border: solid;
-    border-color: var(--bg-primary);
-        }
-</style>
 
                 <form method='post'>
                     <div class='flex'>
@@ -178,8 +233,11 @@ input{
                 </form>
                 
             </div>
-            <div class= borrowReturnCard >
-                <h1>Return Book</h1>
+
+            <input type="radio" id='tabR' name="mytabs" checked='checked'>
+            <label class='labelA' for="tabR">Return Book</label>
+            <div class="tab">
+    
                 {% if numBorrowed == 1 %}
                 You Have {{numBorrowed}} Borrowed Book
                 {% else %}
@@ -187,9 +245,14 @@ input{
                 {% endif %}
 
                 <ul>
-                {% for book in borrowedBooks %}
+                {% for book in notOverdue %}
                     <li>{{book.title}}</li>
                 {% endfor %}
+
+                {% for book in overdue %}
+                    <li style="color: red;">{{book.title}}</li>
+                {% endfor %}
+                
                 </ul>
 
                 {% if msg == 'Done2' %}

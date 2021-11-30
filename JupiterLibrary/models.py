@@ -14,6 +14,9 @@ class Book(models.Model):
     numberAvailable = models.PositiveBigIntegerField('Number Available')
     numberBorrowed = models.PositiveBigIntegerField('Number Borrowed')
 
+    def __str__(self) -> str:
+        return self.title
+
     def save(self):
         super().save()
         img = Image.open(self.image.path)
@@ -23,11 +26,15 @@ class Book(models.Model):
             img.save(self.image.path)
 
 class BorrowedBook(models.Model):
+    def __str__(self) -> str:
+        return self.title +" Borrowed By "+ self.username
     username = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
     days = models.IntegerField()
 
 class UserInfo(models.Model):
+    def __str__(self) -> str:
+        return self.username
     username = models.CharField(max_length=100)
     fName = models.CharField(max_length=100)
     lName = models.CharField(max_length=100)

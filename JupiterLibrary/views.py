@@ -92,7 +92,10 @@ def addEdit(request):
 				if 'Delete' in request.POST:
 					title = request.POST['title']
 					instance = Book.objects.get(title=title)
-					instance.delete()
+					if instance.numberBorrowed == 0:
+						instance.delete()
+					else:
+						exists = 'err'
 
 				if 'Update' in request.POST:
 					bookTitles = [book.title for book in listBooks]
@@ -125,9 +128,11 @@ def makeInfo(request):
 			username = request.user.username
 			email = request.user.email
 			if username not in users:
-				info = NewUserInfoForm({'email':email,'username':username,'bio':bio})
-				info.save()
-				return index(request)
+				data = {'email':email,'username':username,'bio':bio, 'fName':fName,"lName":lName}
+				info = NewUserInfoForm(data)
+				if info.is_valid():
+					info.save()
+					return index(request)
 			else:
 				info = UserInfo.objects.get(username=username)
 				info.bio = bio
@@ -155,7 +160,7 @@ def userpage(request):
 				if book.username == request.user.username:
 					myBooks.append(book)
 			if len(myBooks ) == 0:
-				instance = UserInfo(username = request.user.username)
+				instance = UserInfo.objects.get(username = request.user.username)
 				instance.delete()
 				user = User.objects.get(username = request.user.username)
 				user.delete()
@@ -195,21 +200,31 @@ def borrow(request):
 	borrowedBooks = BorrowedBook.objects.all()
 	msg = 'None'
 	myBooks = []
+	overdue = []
+	notOverdue = []
 	for book in borrowedBooks:
 		if book.username == username:
+			if book.days > 0:
+				notOverdue.append(book)
+			if book.days <= 0:
+				overdue.append(book)
 			myBooks.append(book)
 
 	numBorrowed = len(myBooks)
 	myBooksTitles = [book.title for book in myBooks]
 	if request.method == 'POST':
 		if 'borrow' in request.POST:
-			print(request.POST)
+			
 			title =  request.POST['searchBook']
 			instance = Book.objects.get(title=title)
 			if title in myBooksTitles:
 				msg = "Err1"
 			elif instance.numberBorrowed == instance.numberAvailable:
 				msg = 'Err2'
+			elif len(overdue)>0:
+				msg = 'Err3'
+			elif len(myBooks) >4:
+				msg = 'Err4'
 			else:
 				borrow = NewBorrowedBookForm(
 				{'username' : username,
@@ -230,7 +245,7 @@ def borrow(request):
 			instance.delete()
 			msg = 'Done2'
 
-	return render(request,"borrow.html",{'bookList':listBooks , 'borrowedBooks':myBooks , 'numBorrowed': numBorrowed , 'msg':msg})
+	return render(request,"borrow.html",{'bookList':listBooks , 'overdue':overdue ,'notOverdue':notOverdue,'borrowedBooks':myBooks, 'numBorrowed': numBorrowed , 'msg':msg})
 
 def statuses(request):
 	if request.user.is_superuser:

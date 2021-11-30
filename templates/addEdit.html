@@ -29,6 +29,73 @@
     <title>AddEdit</title>
 
 </head>
+
+<style>
+textarea,
+    input{
+    background-color: transparent;
+    color: white;
+    font-family: 'Open Sans';
+    border: solid;
+    border-color: var(--bg-primary);
+
+}
+p{
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+    
+input[type='file']::file-selector-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    border-right: solid 2px var(--nice-purple);
+  }
+
+
+.mytabs {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 50%;
+    margin: 10rem  10rem;
+    border: solid white 2px;
+}
+label{
+    color: white;
+}
+
+.mytabs input[type="radio"] {
+    display: none;
+}
+.labelA {
+    background: #23232e;
+    font-weight: bold;
+    color: white;
+    padding: 1rem;
+}
+
+.mytabs .tab {
+    width: 100%;
+    padding: 20px;
+    background: #141418;
+    order: 1;
+    display: none;
+}
+.mytabs .tab h2 {
+    font-size: 3em;
+}
+
+.mytabs input[type='radio']:checked + label + .tab {
+    display: block;
+}
+
+.mytabs input[type="radio"]:checked + label {
+    background: #141418;
+}
+
+</style>
 <body>
     <nav class='navbar'>
         <ul class="navbar-nav">
@@ -102,36 +169,59 @@
 
     <main>
 
-        <div class="addEdit">
-            <div class="addEditCard">
-                <h1>Add Book</h1>
-                {% if exists == 'No' %}
-                <p style='color: green;'>Book Made</p>
-                {% endif %}
-                {%if exists == 'Yes' %}
-                <p style="color: red;">Book Already Exists</p>
-                {% endif %}
-                
+
+        <h1 class="title">Add Edit and Delete</h1>
+
+
+        <div class="err">
+            {% if exists == 'No' %}
+            <p style='color: green;'>Book Made</p>
+            {% endif %}
+            {%if exists == 'Yes' %}
+            <p style="color: red;">Book Already Exists</p>
+            {% endif %}
+
+            {% if exists == 'NO' %}
+            <p style="color: red;">Bad Book Name</p>
+             {% elif exists == 'NO2' %}
+            <p style="color: green;">Book Updated</p>
+            {% elif exists == 'NO3' %}
+            <p style="color: red;">Cannot Change Book Title</p>
+            {% elif exists == 'err' %}
+            <p style="color: red;">Cannot delete a book if there are still books borrowed by others</p>
+            {% endif %}
+
+
+        </div>
+
+    
+        <div class="mytabs">
+       
+            <input type="radio" id='tabAdd' name="mytabs" checked='checked'>
+            <label class='labelA' for="tabAdd">Add Book</label>
+            <div class="tab">
+               
             
                 <form method="POST" enctype='multipart/form-data'>
 
-                    {% if not iAmSearching %}
+                 
                     {% csrf_token %}
                     {{ form.as_p }}
         
                     <button type="submit" name='add'>Add Book</button>
-                    {% endif %}
+             
                 
                 </form>
-            
-
+    
             </div>
-            <div class= addEditCard >
-                <h1>Edit Book</h1>
-               
-                
+
+
+
+            <input type="radio" id='tabEdit' name="mytabs" checked='checked'>
+            <label class='labelA'for="tabEdit">Edit Book</label>
+            <div class="tab">
+
             <form method='post'>
-                <div class='flex'>
                     <input type="text" name="searchBook" id="tags">
                     <script>
                         $(function() {
@@ -151,29 +241,27 @@
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                           </svg>
                     </button>
-                </div>
             </form>
+
             <form method="post">
-            {% if exists == 'NO' %}
-                <p style="color: red;">Bad Book Name</p>
-            {% elif exists == 'NO2' %}
-                <p style="color: green;">Book Updated</p>
-            {% elif exists == 'NO3' %}
-            <p style="color: red;">Cannot Change Book Title</p>
-            {% else %}
-            {% if iAmSearching %}
-            {% csrf_token %}
-            {{ searchForm.as_p }}
-            <div>   
-            <button type="submit" name='Update'>Update</button>
-            <button type="submit" name='Delete'>Delete</button>
-            </div>
-            {% endif %}
-            {% endif %}
+             
+                {% if iAmSearching %}
+                {% csrf_token %}
+                {{ searchForm.as_p }}
+    
+                <button type="submit" name='Update'>Update</button>
+                <button type="submit" name='Delete'>Delete</button>
+                {% endif %}
+             
             </form>
+
+            </div>
                 
-            
+
+
         </div>
+            
+      
     </main>
 
 </body>
