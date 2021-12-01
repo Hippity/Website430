@@ -1,4 +1,6 @@
-# Website430
+# Jupiter Library
+
+![](Home.gif)
 
 You need to download a python library called Pillow.
 
