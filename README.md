@@ -1,8 +1,8 @@
 # Website430
 
-#You need to download a python library called Pillow
-#Do pip install Pillow 
-#Pillow is used to work with images.
+You need to download a python library called Pillow.
+Do pip install Pillow.
+Pillow is used to work with images.
 
 Librarian: You can create a librarian by making a super user
 Name: zein
